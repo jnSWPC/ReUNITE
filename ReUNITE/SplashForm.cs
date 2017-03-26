@@ -19,7 +19,7 @@ namespace ReUNITE
             timer1.Interval = 10000; // miliseconds
             timer1.Tick += Timer1_Tick;
         }
-
+        
         private void Timer1_Tick(object sender, EventArgs e)
         {
             this.Hide();
