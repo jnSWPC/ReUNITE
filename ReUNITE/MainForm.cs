@@ -22,13 +22,16 @@ namespace ReUNITE
 
         private void DataGridViewMissingChildrenOnCellClick(object sender, DataGridViewCellEventArgs dataGridViewCellEventArgs)
         {
+            
             if (dataGridViewCellEventArgs.ColumnIndex == 19)
             {
                string posterURL=
                     dataGridViewMissingChildren.Rows[dataGridViewCellEventArgs.RowIndex].Cells[
                         dataGridViewCellEventArgs.ColumnIndex].Value.ToString();
 
-                WebViewer wv= new WebViewer(posterURL);
+                System.Diagnostics.Process.Start(posterURL);
+
+                WebViewer wv = new WebViewer(posterURL);
                 wv.Show(this);
 
             }
