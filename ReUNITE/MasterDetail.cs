@@ -244,6 +244,24 @@ namespace ReUNITE
 
         }
 
+        private void searchTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(searchTextBox.Text))
+            {
+                masterBindingSource.Filter = String.Format("ChildFirstName like '%{0}%' or ChildLastName like '%{0}%'",
+                    searchTextBox.Text);
+            }
+            else
+            {
+                masterBindingSource.Filter = "";
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Report report = new Report();
+            report.ShowDialog();
+        }
     }
 }
 
