@@ -24,8 +24,11 @@ namespace ReUNITE
         {
             this.Hide();
             timer1.Stop();
-            MainForm mainForm = new MainForm();
-            mainForm.ShowDialog();
+            //MainForm mainForm = new MainForm();
+            //mainForm.ShowDialog();
+
+            MasterDetail form = new MasterDetail();
+            form.ShowDialog();
 
         }
     }
