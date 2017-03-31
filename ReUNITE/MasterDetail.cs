@@ -64,8 +64,63 @@ namespace ReUNITE
             }
         }
 
+
+        private string GenerateGoogleSearchUrl(string missingKidFirstName, string missingKidLastName)
+        {
+            var missingKidName = missingKidFirstName + " " + missingKidLastName;
+            return "https://www.google.com/search?q=" + missingKidName;
+        }
+        private string GenerateGoogleImgMatchUrl(string ncmecCaseNumber)
+        {
+            var imgUrlStr = "http://www.missingkids.org/photographs/NCMC"+ ncmecCaseNumber+"c1.jpg";
+            return "https://www.google.com/search?q=" + imgUrlStr + "&source=lnms&tbm=isch&*";
+        }
+
+        private string GenerateTwitterUrl(string missingKidFirstName, string missingKidLastName)
+        {
+            var missingKidName = missingKidFirstName + " " + missingKidLastName;
+            return "https://twitter.com/search?q=" + missingKidName + "&src=typd";
+        }
+
+        private string GenerateFacebookUrl(string missingKidFirstName, string missingKidLastName)
+        {
+            var missingKidName = missingKidFirstName + " " + missingKidLastName;
+            return "https://facebook.com/search?q=" + missingKidName;
+        }
+
+        private string GenerateInstagramUrl(string missingKidFirstName, string missingKidLastName)
+        {
+            return "https://www.instagram.com/" + missingKidFirstName + missingKidLastName;
+            // Instagram Search String: https://www.instagram.com/christopherabeyta/
+        }
+
+        private string GenerateYouTubeUrl(string missingKidFirstName, string missingKidLastName)
+        {
+            return "https://www.youtube.com/results?search_query=" + missingKidFirstName + "+" + missingKidLastName;
+            // YouTube Search String: https://www.youtube.com/results?search_query=christopher+abeyta
+        }
+
+
         private void DataGridViewMissingChildrenOnCellClick(object sender, DataGridViewCellEventArgs dataGridViewCellEventArgs)
         {
+            // populate Social Media URLs
+            if (dataGridViewCellEventArgs.RowIndex >= 0)
+            {
+                var missingKidFirstName =
+                    masterDataGridView.Rows[dataGridViewCellEventArgs.RowIndex].Cells[1].Value.ToString();
+                var missingKidLastName =
+                    masterDataGridView.Rows[dataGridViewCellEventArgs.RowIndex].Cells[2].Value.ToString();
+                GoogleSearchBtn.Tag = GenerateGoogleSearchUrl(missingKidFirstName, missingKidLastName);
+                TwitterBtn.Tag = GenerateTwitterUrl(missingKidFirstName, missingKidLastName);
+                FacebookBtn.Tag = GenerateFacebookUrl(missingKidFirstName, missingKidLastName);
+                InstagramBtn.Tag = GenerateInstagramUrl(missingKidFirstName, missingKidLastName);
+                YouTubeBtn.Tag = GenerateYouTubeUrl(missingKidFirstName, missingKidLastName);
+                var ncmecCaseNumber =
+                    masterDataGridView.Rows[dataGridViewCellEventArgs.RowIndex].Cells[6].Value.ToString();
+                GoogleImgMatchBtn.Tag = GenerateGoogleImgMatchUrl(ncmecCaseNumber);
+            }
+
+            // Poster URL
             if (dataGridViewCellEventArgs.ColumnIndex == 5)
             {
                 string posterURL =
@@ -78,16 +133,14 @@ namespace ReUNITE
                 //System.Diagnostics.Process.Start(googleSearchUrl);
 
                 //Search by Google Web
-                var missingKidName = "christopher abeyta";
-                var googleUrl = "https://www.google.com/search?q=" + missingKidName;
+
+                var googleUrl = GenerateGoogleSearchUrl("christopher", "abeyta");
                 System.Diagnostics.Process.Start(googleUrl);
 
-                missingKidName = "christopher abeyta";
-                var twitterUrl = "https://twitter.com/search?q=" + missingKidName + "&src=typd";
+                var twitterUrl = GenerateTwitterUrl("christopher", "abeyta");
                 System.Diagnostics.Process.Start(twitterUrl);
 
-                missingKidName = "christopher abeyta";
-                var fbUrl = "https://facebook.com/search?q=" + missingKidName;
+                var fbUrl = GenerateFacebookUrl("christopher", "abeyta");
                 System.Diagnostics.Process.Start(fbUrl);
 
                 //var searchimagesURL = "http://www.google.com/images?q=NCMC600552c1.jpg";
@@ -148,6 +201,7 @@ namespace ReUNITE
             public DateTime MissingReportedDate { get; set; }
             public string PosterContact { get; set; }
             public string PosterUrl { get; set; }
+            public string NcmecCaseNumber { get; set; }
         }
 
         public class CsvChildData
@@ -164,7 +218,6 @@ namespace ReUNITE
             public string MissingFromCity { get; set; }
             public string MissingFromState { get; set; }
             public string MissingFromCountry { get; set; }
-            public string NcmecCaseNumber { get; set; }
             public string CaseType { get; set; }
             public string NcmecCaseManager { get; set; }
 
@@ -194,7 +247,8 @@ namespace ReUNITE
                         ChildLastName = fields[2],
                         MissingReportedDate = DateTime.Parse(fields[10]),
                         PosterContact = fields[18],
-                        PosterUrl = "http://" + fields[19]
+                        PosterUrl = "http://" + fields[19],
+                        NcmecCaseNumber = fields[15]
                     };
                 }
 
@@ -234,7 +288,6 @@ namespace ReUNITE
                         MissingFromCity = fields[12],
                         MissingFromState = fields[13],
                         MissingFromCountry = fields[14],
-                        NcmecCaseNumber = fields[15],
                         CaseType = fields[16],
                         NcmecCaseManager = fields[17]
                     };
@@ -261,6 +314,80 @@ namespace ReUNITE
         {
             Report report = new Report();
             report.ShowDialog();
+        }
+
+
+        // google search button
+        private void GoogleSearchBtn_Click(object sender, EventArgs e)
+        {
+            if (GoogleSearchBtn.Tag == null)
+            {
+                MessageBox.Show("Please click a child name in the top table.");
+                return;
+            }
+
+            var url = GoogleSearchBtn.Tag.ToString();
+            System.Diagnostics.Process.Start(url);
+        }
+
+        private void GoogleImgMatchBtn_Click(object sender, EventArgs e)
+        {
+            if (GoogleImgMatchBtn.Tag == null)
+            {
+                MessageBox.Show("Please click a child name in the top table.");
+                return;
+            }
+
+            var url = GoogleImgMatchBtn.Tag.ToString();
+            System.Diagnostics.Process.Start(url);
+        }
+
+        private void TwitterBtn_Click(object sender, EventArgs e)
+        {
+            if (TwitterBtn.Tag == null)
+            {
+                MessageBox.Show("Please click a child name in the top table.");
+                return;
+            }
+
+            var url = TwitterBtn.Tag.ToString();
+            System.Diagnostics.Process.Start(url);
+        }
+
+        private void FacebookBtn_Click(object sender, EventArgs e)
+        {
+            if (FacebookBtn.Tag == null)
+            {
+                MessageBox.Show("Please click a child name in the top table.");
+                return;
+            }
+
+            var url = FacebookBtn.Tag.ToString();
+            System.Diagnostics.Process.Start(url);
+        }
+
+        private void InstagramBtn_Click(object sender, EventArgs e)
+        {
+            if (InstagramBtn.Tag == null)
+            {
+                MessageBox.Show("Please click a child name in the top table.");
+                return;
+            }
+
+            var url = InstagramBtn.Tag.ToString();
+            System.Diagnostics.Process.Start(url);
+        }
+
+        private void YouTubeBtn_Click(object sender, EventArgs e)
+        {
+            if (YouTubeBtn.Tag == null)
+            {
+                MessageBox.Show("Please click a child name in the top table.");
+                return;
+            }
+
+            var url = YouTubeBtn.Tag.ToString();
+            System.Diagnostics.Process.Start(url);
         }
     }
 }
