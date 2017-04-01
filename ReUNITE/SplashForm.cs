@@ -16,7 +16,7 @@ namespace ReUNITE
         {
             InitializeComponent();
             timer1.Start();
-            timer1.Interval = 10000; // miliseconds
+            timer1.Interval = 3000; // miliseconds
             timer1.Tick += Timer1_Tick;
         }
         

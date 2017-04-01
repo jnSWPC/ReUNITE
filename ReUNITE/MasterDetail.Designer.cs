@@ -30,7 +30,6 @@ namespace ReUNITE
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.button1 = new System.Windows.Forms.Button();
@@ -47,12 +46,6 @@ namespace ReUNITE
             this.GoogleSearchBtn = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.detailsDataGridView = new System.Windows.Forms.DataGridView();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.googleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.byImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.byNameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.twitterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.byNameToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -64,14 +57,13 @@ namespace ReUNITE
             ((System.ComponentModel.ISupportInitialize)(this.masterDataGridView)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.detailsDataGridView)).BeginInit();
-            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainer1
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer1.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer1.Margin = new System.Windows.Forms.Padding(2);
+            this.splitContainer1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.splitContainer1.Name = "splitContainer1";
             this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -81,24 +73,25 @@ namespace ReUNITE
             // 
             // splitContainer1.Panel2
             // 
+            this.splitContainer1.Panel2.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.splitContainer1.Panel2.Controls.Add(this.panel1);
             this.splitContainer1.Panel2.Controls.Add(this.label2);
             this.splitContainer1.Panel2.Controls.Add(this.detailsDataGridView);
-            this.splitContainer1.Size = new System.Drawing.Size(981, 615);
-            this.splitContainer1.SplitterDistance = 418;
-            this.splitContainer1.SplitterWidth = 3;
+            this.splitContainer1.Size = new System.Drawing.Size(1288, 696);
+            this.splitContainer1.SplitterDistance = 473;
             this.splitContainer1.TabIndex = 0;
             // 
             // splitContainer2
             // 
             this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer2.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer2.Margin = new System.Windows.Forms.Padding(2);
+            this.splitContainer2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.splitContainer2.Name = "splitContainer2";
             this.splitContainer2.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
             // splitContainer2.Panel1
             // 
+            this.splitContainer2.Panel1.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.splitContainer2.Panel1.Controls.Add(this.button1);
             this.splitContainer2.Panel1.Controls.Add(this.label1);
             this.splitContainer2.Panel1.Controls.Add(this.searchTextBox);
@@ -106,18 +99,17 @@ namespace ReUNITE
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.masterDataGridView);
-            this.splitContainer2.Size = new System.Drawing.Size(981, 418);
-            this.splitContainer2.SplitterDistance = 47;
-            this.splitContainer2.SplitterWidth = 3;
+            this.splitContainer2.Size = new System.Drawing.Size(1288, 473);
+            this.splitContainer2.SplitterDistance = 52;
             this.splitContainer2.TabIndex = 1;
             // 
             // button1
             // 
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(546, 9);
-            this.button1.Margin = new System.Windows.Forms.Padding(2);
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(728, 11);
+            this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(193, 27);
+            this.button1.Size = new System.Drawing.Size(257, 33);
             this.button1.TabIndex = 2;
             this.button1.Text = "Analytics & Reports";
             this.button1.UseVisualStyleBackColor = true;
@@ -127,19 +119,19 @@ namespace ReUNITE
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(11, 14);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Location = new System.Drawing.Point(15, 17);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(167, 20);
+            this.label1.Size = new System.Drawing.Size(216, 25);
             this.label1.TabIndex = 1;
-            this.label1.Text = "Search By Child Name";
+            this.label1.Text = "Search By Child Name:";
             // 
             // searchTextBox
             // 
-            this.searchTextBox.Location = new System.Drawing.Point(188, 14);
-            this.searchTextBox.Margin = new System.Windows.Forms.Padding(2);
+            this.searchTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.searchTextBox.Location = new System.Drawing.Point(251, 17);
+            this.searchTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.searchTextBox.Name = "searchTextBox";
-            this.searchTextBox.Size = new System.Drawing.Size(331, 20);
+            this.searchTextBox.Size = new System.Drawing.Size(440, 30);
             this.searchTextBox.TabIndex = 0;
             this.searchTextBox.TextChanged += new System.EventHandler(this.searchTextBox_TextChanged);
             // 
@@ -151,17 +143,17 @@ namespace ReUNITE
             this.masterDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.masterDataGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.masterDataGridView.Location = new System.Drawing.Point(0, 0);
-            this.masterDataGridView.Margin = new System.Windows.Forms.Padding(2);
+            this.masterDataGridView.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.masterDataGridView.MultiSelect = false;
             this.masterDataGridView.Name = "masterDataGridView";
             this.masterDataGridView.RowTemplate.Height = 24;
-            this.masterDataGridView.Size = new System.Drawing.Size(981, 368);
+            this.masterDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.masterDataGridView.Size = new System.Drawing.Size(1288, 417);
             this.masterDataGridView.TabIndex = 1;
             // 
             // panel1
             // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BackColor = System.Drawing.SystemColors.Highlight;
             this.panel1.Controls.Add(this.YouTubeBtn);
@@ -172,18 +164,20 @@ namespace ReUNITE
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.GoogleSearchBtn);
             this.panel1.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.panel1.Location = new System.Drawing.Point(0, 114);
+            this.panel1.Location = new System.Drawing.Point(0, 100);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(981, 92);
+            this.panel1.Size = new System.Drawing.Size(1288, 122);
             this.panel1.TabIndex = 3;
             // 
             // YouTubeBtn
             // 
             this.YouTubeBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.YouTubeBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.YouTubeBtn.Location = new System.Drawing.Point(817, 40);
+            this.YouTubeBtn.Location = new System.Drawing.Point(1085, 68);
+            this.YouTubeBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.YouTubeBtn.Name = "YouTubeBtn";
-            this.YouTubeBtn.Size = new System.Drawing.Size(140, 32);
+            this.YouTubeBtn.Size = new System.Drawing.Size(187, 39);
             this.YouTubeBtn.TabIndex = 9;
             this.YouTubeBtn.Text = "YouTube";
             this.YouTubeBtn.UseVisualStyleBackColor = true;
@@ -193,9 +187,10 @@ namespace ReUNITE
             // 
             this.InstagramBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.InstagramBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.InstagramBtn.Location = new System.Drawing.Point(652, 40);
+            this.InstagramBtn.Location = new System.Drawing.Point(865, 68);
+            this.InstagramBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.InstagramBtn.Name = "InstagramBtn";
-            this.InstagramBtn.Size = new System.Drawing.Size(159, 32);
+            this.InstagramBtn.Size = new System.Drawing.Size(212, 39);
             this.InstagramBtn.TabIndex = 8;
             this.InstagramBtn.Text = "Instagram";
             this.InstagramBtn.UseVisualStyleBackColor = true;
@@ -205,9 +200,10 @@ namespace ReUNITE
             // 
             this.FacebookBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.FacebookBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FacebookBtn.Location = new System.Drawing.Point(504, 39);
+            this.FacebookBtn.Location = new System.Drawing.Point(668, 67);
+            this.FacebookBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.FacebookBtn.Name = "FacebookBtn";
-            this.FacebookBtn.Size = new System.Drawing.Size(142, 32);
+            this.FacebookBtn.Size = new System.Drawing.Size(189, 39);
             this.FacebookBtn.TabIndex = 7;
             this.FacebookBtn.Text = "Facebook";
             this.FacebookBtn.UseVisualStyleBackColor = true;
@@ -217,9 +213,10 @@ namespace ReUNITE
             // 
             this.TwitterBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.TwitterBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TwitterBtn.Location = new System.Drawing.Point(342, 40);
+            this.TwitterBtn.Location = new System.Drawing.Point(452, 68);
+            this.TwitterBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.TwitterBtn.Name = "TwitterBtn";
-            this.TwitterBtn.Size = new System.Drawing.Size(156, 32);
+            this.TwitterBtn.Size = new System.Drawing.Size(208, 39);
             this.TwitterBtn.TabIndex = 6;
             this.TwitterBtn.Text = "Twitter";
             this.TwitterBtn.UseVisualStyleBackColor = true;
@@ -229,9 +226,10 @@ namespace ReUNITE
             // 
             this.GoogleImgMatchBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.GoogleImgMatchBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.GoogleImgMatchBtn.Location = new System.Drawing.Point(174, 40);
+            this.GoogleImgMatchBtn.Location = new System.Drawing.Point(228, 68);
+            this.GoogleImgMatchBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.GoogleImgMatchBtn.Name = "GoogleImgMatchBtn";
-            this.GoogleImgMatchBtn.Size = new System.Drawing.Size(162, 32);
+            this.GoogleImgMatchBtn.Size = new System.Drawing.Size(216, 39);
             this.GoogleImgMatchBtn.TabIndex = 5;
             this.GoogleImgMatchBtn.Text = "Google Image Match";
             this.GoogleImgMatchBtn.UseVisualStyleBackColor = true;
@@ -244,19 +242,21 @@ namespace ReUNITE
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(395, 5);
+            this.label3.Location = new System.Drawing.Point(487, 0);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(290, 31);
+            this.label3.Size = new System.Drawing.Size(426, 39);
             this.label3.TabIndex = 4;
-            this.label3.Text = "Social Media Channels";
+            this.label3.Text = "Social Media Quick Search";
             // 
             // GoogleSearchBtn
             // 
             this.GoogleSearchBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.GoogleSearchBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.GoogleSearchBtn.Location = new System.Drawing.Point(26, 39);
+            this.GoogleSearchBtn.Location = new System.Drawing.Point(31, 67);
+            this.GoogleSearchBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.GoogleSearchBtn.Name = "GoogleSearchBtn";
-            this.GoogleSearchBtn.Size = new System.Drawing.Size(142, 32);
+            this.GoogleSearchBtn.Size = new System.Drawing.Size(189, 39);
             this.GoogleSearchBtn.TabIndex = 0;
             this.GoogleSearchBtn.Text = "Google Search";
             this.GoogleSearchBtn.UseVisualStyleBackColor = true;
@@ -266,80 +266,42 @@ namespace ReUNITE
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(-4, 5);
+            this.label2.Location = new System.Drawing.Point(-5, 6);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(282, 20);
+            this.label2.Size = new System.Drawing.Size(168, 25);
             this.label2.TabIndex = 2;
-            this.label2.Text = "Detailed Information for a Selected Kid";
+            this.label2.Text = "Additional Details:";
             // 
             // detailsDataGridView
             // 
+            this.detailsDataGridView.AllowUserToAddRows = false;
+            this.detailsDataGridView.AllowUserToDeleteRows = false;
             this.detailsDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.detailsDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.detailsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.detailsDataGridView.GridColor = System.Drawing.SystemColors.Control;
-            this.detailsDataGridView.Location = new System.Drawing.Point(0, 25);
+            this.detailsDataGridView.Location = new System.Drawing.Point(0, 31);
             this.detailsDataGridView.Margin = new System.Windows.Forms.Padding(0);
             this.detailsDataGridView.Name = "detailsDataGridView";
+            this.detailsDataGridView.ReadOnly = true;
             this.detailsDataGridView.RowTemplate.Height = 24;
-            this.detailsDataGridView.Size = new System.Drawing.Size(979, 87);
+            this.detailsDataGridView.Size = new System.Drawing.Size(1288, 65);
             this.detailsDataGridView.TabIndex = 1;
-            // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.googleToolStripMenuItem,
-            this.twitterToolStripMenuItem});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(113, 48);
-            // 
-            // googleToolStripMenuItem
-            // 
-            this.googleToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.byImageToolStripMenuItem,
-            this.byNameToolStripMenuItem});
-            this.googleToolStripMenuItem.Name = "googleToolStripMenuItem";
-            this.googleToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
-            this.googleToolStripMenuItem.Text = "Google";
-            // 
-            // byImageToolStripMenuItem
-            // 
-            this.byImageToolStripMenuItem.Name = "byImageToolStripMenuItem";
-            this.byImageToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
-            this.byImageToolStripMenuItem.Text = "By Image";
-            // 
-            // byNameToolStripMenuItem
-            // 
-            this.byNameToolStripMenuItem.Name = "byNameToolStripMenuItem";
-            this.byNameToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
-            this.byNameToolStripMenuItem.Text = "By Name";
-            // 
-            // twitterToolStripMenuItem
-            // 
-            this.twitterToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.byNameToolStripMenuItem1});
-            this.twitterToolStripMenuItem.Name = "twitterToolStripMenuItem";
-            this.twitterToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
-            this.twitterToolStripMenuItem.Text = "Twitter";
-            // 
-            // byNameToolStripMenuItem1
-            // 
-            this.byNameToolStripMenuItem1.Name = "byNameToolStripMenuItem1";
-            this.byNameToolStripMenuItem1.Size = new System.Drawing.Size(122, 22);
-            this.byNameToolStripMenuItem1.Text = "By Name";
             // 
             // MasterDetail
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(981, 615);
+            this.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.ClientSize = new System.Drawing.Size(1288, 696);
             this.Controls.Add(this.splitContainer1);
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "MasterDetail";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "MasterDetail";
+            this.Text = "Missing Child Details Viewer";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
@@ -355,7 +317,6 @@ namespace ReUNITE
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.detailsDataGridView)).EndInit();
-            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -363,12 +324,6 @@ namespace ReUNITE
         #endregion
 
         private System.Windows.Forms.SplitContainer splitContainer1;
-        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem googleToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem byImageToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem byNameToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem twitterToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem byNameToolStripMenuItem1;
         private System.Windows.Forms.SplitContainer splitContainer2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox searchTextBox;

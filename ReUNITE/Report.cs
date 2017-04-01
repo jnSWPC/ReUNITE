@@ -44,8 +44,6 @@ namespace ReUNITE
                 String.Format("MissingFromCity = '{0}' and (MmissingFromdate >= '{1}' and MmissingFromdate <= '{2}')",
                     comboBox1.SelectedValue, dateTimePickerFromMissingDate.Value, dateTimePickerToMissingDate.Value);
 
-            lblFromMissingDate.Text = dateTimePickerFromMissingDate.Value.ToString();
-            lblToMissingDate.Text = dateTimePickerToMissingDate.Value.ToString();
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
             DataView ds = (DataView) bindingSource.List;
@@ -59,8 +57,6 @@ namespace ReUNITE
                          };
 
             chart1.Series["Series1"].Points.DataBindXY(result.ToList(), "MmissingFromdateMonth", result.ToList(), "ChildCount");
-
-            //chart1.Series["Series1"].Points.DataBindXY(bindingSource.List, "MmissingFromdate", bindingSource.List, "Count(ChildFirstName)");
         }
 
         public static DataTable ToDataTable<T>(IList<T> data)
@@ -90,8 +86,7 @@ namespace ReUNITE
             {
                 parser.CommentTokens = new string[] { "#" };
                 parser.SetDelimiters(new string[] { "," });
-                //parser.HasFieldsEnclosedInQuotes = true;
-
+ 
                 // Skip over header line.
                 parser.ReadLine();
 
@@ -100,26 +95,13 @@ namespace ReUNITE
                     string[] fields = parser.ReadFields();
                     yield return new CsvData()
                     {
-                        //ChildId = int.Parse(fields[0]),
                         ChildFirstName = fields[1],
-                        ChildLastName = fields[2]
-                        /*BirthDate = DateTime.Parse(fields[3])*/,
-                        //Sex = fields[4],
-                        //Race = fields[5],
-                        //Haircolor = fields[6],
-                        //EyeColor = fields[7],
-                        //Height = Double.Parse(fields[8]),
-                        //Weight = Double.Parse(fields[9]),
+                        ChildLastName = fields[2],
                         MissingReportedDate = DateTime.Parse(fields[10]),
                         MmissingFromdate = DateTime.Parse(fields[11]),
                         MissingFromCity = fields[12],
                         MissingFromState = fields[13],
                         MissingFromCountry = fields[14],
-                        //NcmecCaseNumber = fields[15],
-                        //CaseType = fields[16],
-                        //NcmecCaseManager = fields[17],
-                        //PosterContact = fields[18],
-                        //PosterUrl = "http://" + fields[19]
                     };
                 }
 
@@ -146,25 +128,13 @@ namespace ReUNITE
 
     public class CsvData
     {
-        //public int ChildId { get; set; }
         public string ChildFirstName { get; set; }
         public string ChildLastName { get; set; }
-        //public DateTime BirthDate { get; set; }
-        //public string Sex { get; set; }
-        //public string Race { get; set; }
-        //public string Haircolor { get; set; }
-        //public string EyeColor { get; set; }
-        //public double Height { get; set; }
-        //public double Weight { get; set; }
         public DateTime MissingReportedDate { get; set; }
         public DateTime MmissingFromdate { get; set; }
         public string MissingFromCity { get; set; }
         public string MissingFromState { get; set; }
         public string MissingFromCountry { get; set; }
-        //public string NcmecCaseNumber { get; set; }
-        //public string CaseType { get; set; }
-        //public string NcmecCaseManager { get; set; }
-        //public string PosterContact { get; set; }
-        //public string PosterUrl { get; set; }
+
     }
 }

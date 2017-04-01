@@ -27,8 +27,8 @@ namespace ReUNITE
             nestedData.Tables.Add(csvMainDataTable);
             nestedData.Tables[0].TableName = "Main";
             nestedData.Tables.Add(csvChildDataTable);
-            DataRelation Datatablerelation = new DataRelation("ChildDetails", nestedData.Tables[0].Columns[0], nestedData.Tables[1].Columns[0], true);
-            nestedData.Relations.Add(Datatablerelation);
+            DataRelation dataRelation = new DataRelation("ChildDetails", nestedData.Tables[0].Columns[0], nestedData.Tables[1].Columns[0], true);
+            nestedData.Relations.Add(dataRelation);
 
             masterBindingSource.DataSource = nestedData;
             masterBindingSource.DataMember = "Main";
@@ -40,20 +40,50 @@ namespace ReUNITE
             detailsDataGridView.DataSource = detailsBindingSource;
             masterDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
             masterDataGridView.Columns[5].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            //masterDataGridView.AutoResizeColumns();
-            //detailsDataGridView.AutoResizeColumns();
-
+       
             masterDataGridView.Columns[0].Visible = false;
             detailsDataGridView.Columns[0].Visible = false;
             masterDataGridView.DataBindingComplete += DataGridViewMissingChildren_DataBindingComplete;
-            masterDataGridView.CellMouseDown += DataGridViewMissingChildren_CellMouseDown;
             masterDataGridView.CellClick += DataGridViewMissingChildrenOnCellClick;
+            masterDataGridView.SelectionChanged += MasterDataGridView_SelectionChanged;
+            masterDataGridView.Rows[0].Selected = true; 
+        }
 
-            //detailsDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+        private void DataGridViewMissingChildrenOnCellClick(object sender, DataGridViewCellEventArgs dataGridViewCellEventArgs)
+        {
+            if (dataGridViewCellEventArgs.ColumnIndex == 5)
+            {
+                string posterURL =
+                     masterDataGridView.Rows[dataGridViewCellEventArgs.RowIndex].Cells[
+                         dataGridViewCellEventArgs.ColumnIndex].Value.ToString();
 
+                System.Diagnostics.Process.Start(posterURL);
+            }
+        }
 
-            //dataGridViewMissingChildren.AutoSizeColumnsMode =
-            //DataGridViewAutoSizeColumnsMode.AllCells;
+        private void MasterDataGridView_SelectionChanged(object sender, EventArgs e)
+        {
+            // populate Social Media URLs
+            if (masterDataGridView.SelectedRows.Count > 0)
+            {
+                int selectedRowIndex = masterDataGridView.SelectedRows[0].Index;
+
+                if (masterDataGridView.SelectedRows[0].Index >= 0)
+                {
+                    var missingKidFirstName =
+                        masterDataGridView.Rows[selectedRowIndex].Cells[1].Value.ToString();
+                    var missingKidLastName =
+                        masterDataGridView.Rows[selectedRowIndex].Cells[2].Value.ToString();
+                    GoogleSearchBtn.Tag = GenerateGoogleSearchUrl(missingKidFirstName, missingKidLastName);
+                    TwitterBtn.Tag = GenerateTwitterUrl(missingKidFirstName, missingKidLastName);
+                    FacebookBtn.Tag = GenerateFacebookUrl(missingKidFirstName, missingKidLastName);
+                    InstagramBtn.Tag = GenerateInstagramUrl(missingKidFirstName, missingKidLastName);
+                    YouTubeBtn.Tag = GenerateYouTubeUrl(missingKidFirstName, missingKidLastName);
+                    var ncmecCaseNumber =
+                        masterDataGridView.Rows[selectedRowIndex].Cells[6].Value.ToString();
+                    GoogleImgMatchBtn.Tag = GenerateGoogleImgMatchUrl(ncmecCaseNumber);
+                }
+            }
         }
 
         private void DataGridViewMissingChildren_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
@@ -72,7 +102,7 @@ namespace ReUNITE
         }
         private string GenerateGoogleImgMatchUrl(string ncmecCaseNumber)
         {
-            var imgUrlStr = "http://www.missingkids.org/photographs/NCMC"+ ncmecCaseNumber+"c1.jpg";
+            var imgUrlStr = "NCMC"+ ncmecCaseNumber+"c1.jpg";
             return "https://www.google.com/search?q=" + imgUrlStr + "&source=lnms&tbm=isch&*";
         }
 
@@ -98,82 +128,6 @@ namespace ReUNITE
         {
             return "https://www.youtube.com/results?search_query=" + missingKidFirstName + "+" + missingKidLastName;
             // YouTube Search String: https://www.youtube.com/results?search_query=christopher+abeyta
-        }
-
-
-        private void DataGridViewMissingChildrenOnCellClick(object sender, DataGridViewCellEventArgs dataGridViewCellEventArgs)
-        {
-            // populate Social Media URLs
-            if (dataGridViewCellEventArgs.RowIndex >= 0)
-            {
-                var missingKidFirstName =
-                    masterDataGridView.Rows[dataGridViewCellEventArgs.RowIndex].Cells[1].Value.ToString();
-                var missingKidLastName =
-                    masterDataGridView.Rows[dataGridViewCellEventArgs.RowIndex].Cells[2].Value.ToString();
-                GoogleSearchBtn.Tag = GenerateGoogleSearchUrl(missingKidFirstName, missingKidLastName);
-                TwitterBtn.Tag = GenerateTwitterUrl(missingKidFirstName, missingKidLastName);
-                FacebookBtn.Tag = GenerateFacebookUrl(missingKidFirstName, missingKidLastName);
-                InstagramBtn.Tag = GenerateInstagramUrl(missingKidFirstName, missingKidLastName);
-                YouTubeBtn.Tag = GenerateYouTubeUrl(missingKidFirstName, missingKidLastName);
-                var ncmecCaseNumber =
-                    masterDataGridView.Rows[dataGridViewCellEventArgs.RowIndex].Cells[6].Value.ToString();
-                GoogleImgMatchBtn.Tag = GenerateGoogleImgMatchUrl(ncmecCaseNumber);
-            }
-
-            // Poster URL
-            if (dataGridViewCellEventArgs.ColumnIndex == 5)
-            {
-                string posterURL =
-                     masterDataGridView.Rows[dataGridViewCellEventArgs.RowIndex].Cells[
-                         dataGridViewCellEventArgs.ColumnIndex].Value.ToString();
-
-                //Search by Google Image Match
-                //var imgUrlStr = "http://www.missingkids.org/photographs/NCMC600552c1.jpg";
-                //var googleSearchUrl = "https://www.google.com/search?q=" + imgUrlStr + "&source=lnms&tbm=isch&*";
-                //System.Diagnostics.Process.Start(googleSearchUrl);
-
-                //Search by Google Web
-
-                var googleUrl = GenerateGoogleSearchUrl("christopher", "abeyta");
-                System.Diagnostics.Process.Start(googleUrl);
-
-                var twitterUrl = GenerateTwitterUrl("christopher", "abeyta");
-                System.Diagnostics.Process.Start(twitterUrl);
-
-                var fbUrl = GenerateFacebookUrl("christopher", "abeyta");
-                System.Diagnostics.Process.Start(fbUrl);
-
-                //var searchimagesURL = "http://www.google.com/images?q=NCMC600552c1.jpg";
-                //System.Diagnostics.Process.Start(searchimagesURL);
-
-                //var googleSearchUrl1 = "https://www.google.com/search?q=NCMC600552c1.jpg&source=lnms&tbm=isch&*";
-                //System.Diagnostics.Process.Start(googleSearchUrl1);
-
-                //WebViewer wv = new WebViewer(posterURL);
-                //wv.ShowDialog(this);
-
-            }
-        }
-
-        private void DataGridViewMissingChildren_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
-        {
-            // Ignore if a column or row header is clicked
-            if (e.RowIndex != -1 && e.ColumnIndex != -1)
-            {
-                if (e.Button == MouseButtons.Right)
-                {
-                    DataGridViewCell clickedCell = (sender as DataGridView).Rows[e.RowIndex].Cells[e.ColumnIndex];
-
-                    // Here you can do whatever you want with the cell
-                    this.masterDataGridView.CurrentCell = clickedCell;  // Select the clicked cell, for instance
-
-                    // Get mouse position relative to the vehicles grid
-                    var relativeMousePosition = masterDataGridView.PointToClient(Cursor.Position);
-
-                    // Show the context menu
-                    this.contextMenuStrip1.Show(masterDataGridView, relativeMousePosition);
-                }
-            }
         }
 
         public static DataTable ToDataTable<T>(IList<T> data)
