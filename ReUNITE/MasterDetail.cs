@@ -81,7 +81,7 @@ namespace ReUNITE
                     YouTubeBtn.Tag = GenerateYouTubeUrl(missingKidFirstName, missingKidLastName);
                     var ncmecCaseNumber =
                         masterDataGridView.Rows[selectedRowIndex].Cells[6].Value.ToString();
-                    GoogleImgMatchBtn.Tag = GenerateGoogleImgMatchUrl(ncmecCaseNumber);
+                    GoogleImgMatchBtn.Tag = GenerateGoogleImgFileName(ncmecCaseNumber);
                 }
             }
         }
@@ -100,10 +100,12 @@ namespace ReUNITE
             var missingKidName = missingKidFirstName + " " + missingKidLastName;
             return "https://www.google.com/search?q=" + missingKidName;
         }
-        private string GenerateGoogleImgMatchUrl(string ncmecCaseNumber)
+
+        private string GenerateGoogleImgFileName(string ncmecCaseNumber)
         {
-            var imgUrlStr = "NCMC"+ ncmecCaseNumber+"c1.jpg";
-            return "https://www.google.com/search?q=" + imgUrlStr + "&source=lnms&tbm=isch&*";
+            if (string.IsNullOrEmpty(ncmecCaseNumber)) return "";
+
+            return "NCMC"+ ncmecCaseNumber+"c1.jpg";
         }
 
         private string GenerateTwitterUrl(string missingKidFirstName, string missingKidLastName)
@@ -292,7 +294,16 @@ namespace ReUNITE
                 return;
             }
 
-            var url = GoogleImgMatchBtn.Tag.ToString();
+            var imgFileName = GoogleImgMatchBtn.Tag.ToString(); 
+            if (string.IsNullOrEmpty(imgFileName)) return;
+
+            //img file name search
+            var url = "https://www.google.com/search?q=" + imgFileName + "&source=lnms&tbm=isch&*";
+            System.Diagnostics.Process.Start(url);
+
+            //img file web location search
+            imgFileName = "http://www.missingkids.org/photographs/" + imgFileName;
+            url = "https://www.google.com/search?q=" + imgFileName + "&source=lnms&tbm=isch&*"; 
             System.Diagnostics.Process.Start(url);
         }
 
