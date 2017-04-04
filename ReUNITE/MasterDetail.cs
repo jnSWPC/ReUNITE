@@ -46,7 +46,24 @@ namespace ReUNITE
             masterDataGridView.DataBindingComplete += DataGridViewMissingChildren_DataBindingComplete;
             masterDataGridView.CellClick += DataGridViewMissingChildrenOnCellClick;
             masterDataGridView.SelectionChanged += MasterDataGridView_SelectionChanged;
+            detailsDataGridView.SelectionChanged += DetailsDataGridView_SelectionChanged;
             masterDataGridView.Rows[0].Selected = true; 
+        }
+
+        private void DetailsDataGridView_SelectionChanged(object sender, EventArgs e)
+        {
+            if (detailsDataGridView.Rows.Count > 0)
+            {
+                int selectedRowIndex = detailsDataGridView.Rows[0].Index;
+                var missingKidGender =
+                    detailsDataGridView.Rows[selectedRowIndex].Cells[2].Value.ToString();
+                var missingKidHair =
+                    detailsDataGridView.Rows[selectedRowIndex].Cells[4].Value.ToString();
+                var missingKidEyes =
+                    detailsDataGridView.Rows[selectedRowIndex].Cells[5].Value.ToString();
+                TextToImageBtn.Tag = missingKidGender + " gender and " + missingKidHair + " hair and " + missingKidEyes +
+                                     " eyes";
+            }
         }
 
         private void DataGridViewMissingChildrenOnCellClick(object sender, DataGridViewCellEventArgs dataGridViewCellEventArgs)
@@ -82,6 +99,7 @@ namespace ReUNITE
                     var ncmecCaseNumber =
                         masterDataGridView.Rows[selectedRowIndex].Cells[6].Value.ToString();
                     GoogleImgMatchBtn.Tag = GenerateGoogleImgFileName(ncmecCaseNumber);
+
                 }
             }
         }
@@ -352,6 +370,18 @@ namespace ReUNITE
             }
 
             var url = YouTubeBtn.Tag.ToString();
+            System.Diagnostics.Process.Start(url);
+        }
+
+        private void TextToImageBtn_Click(object sender, EventArgs e)
+        {
+            if (TextToImageBtn.Tag == null)
+            {
+                MessageBox.Show("Please click a child name in the top table.");
+                return;
+            }
+
+            var url = "https://www.google.com/search?q=" + TextToImageBtn.Tag.ToString() + "&source=lnms&tbm=isch&*";
             System.Diagnostics.Process.Start(url);
         }
     }
