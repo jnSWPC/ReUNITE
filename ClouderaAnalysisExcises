@@ -1,0 +1,81 @@
+-- Which city has higher amount of missing kids
+SELECT 
+    count(1) as stateCount,
+    missingfromstate
+FROM `default`.`mediareadyactivecases_03082017`
+group by missingfromstate
+order by missingfromstate
+
+
+-- Top 10 cities has higher amount of missing kids
+SELECT 
+    COUNT(1) as stateCount,
+    missingfromstate
+FROM 
+    `default`.`mediareadyactivecases_03082017`
+GROUP BY missingfromstate
+ORDER BY stateCount desc
+LIMIT 10
+
+
+-- Average Reporting Gap = missing report date - missing from date
+-- Average Missing Age = missing from date - birth date
+SELECT 
+    avg(datediff(to_date(missingreporteddate), to_date(missingfromdate))) as avg_reporting_gap,
+    avg(datediff(to_date(missingfromdate),to_date(birthdate))/365) as avg_missing_age,
+    missingfromstate,
+FROM `default`.`mediareadyactivecases_03082017`
+Group By missingfromstate
+Order By missingfromstate
+
+
+-- casetype and missing city for cases in 2017
+SELECT 
+   COUNT(*) as CountOfCaseType, 
+   missingfromcity
+FROM `default`.`mediareadyactivecases_03082017`
+WHERE year(to_date(missingfromdate)) >= 2017
+Group By missingfromcity
+Order By missingfromcity
+
+
+-- case type and average age
+ 
+select
+   COUNT(*) as CountOfCaseType, 
+   CaseType, 
+   avg(2017 - year(birthdate)) as AveragAge
+FROM `default`.`mediareadyactivecases_03082017`
+Group By CaseType
+Order By  CaseType
+
+-- case type and average age
+ 
+select
+   COUNT(*) as CountOfCaseType, 
+   CaseType, 
+   avg(year(missingfromdate) - year(birthdate)) as AveragAge
+FROM `default`.`mediareadyactivecases_03082017`
+Group By CaseType
+Order By  CaseType
+
+
+-- Factor: Gender
+SELECT 
+    COUNT(*) as CountOfGender, 
+    sex
+FROM `default`.`mediareadyactivecases_03082017`
+WHERE year(to_date(missingfromdate)) >= 2017
+Group By sex
+Order By sex
+
+
+-- Factor: Race
+SELECT 
+    COUNT(*) as CountOfRace, 
+    race
+FROM `default`.`mediareadyactivecases_03082017`
+WHERE year(to_date(missingfromdate)) >= 2017
+Group By race
+Order By race
+
